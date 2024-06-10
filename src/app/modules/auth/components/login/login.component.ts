@@ -5,6 +5,7 @@ import { first } from 'rxjs/operators';
 import { UserModel } from '../../models/user.model';
 import { AuthService } from '../../services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { LoginResponseModel } from '../../models/login-response.model';
 
 @Component({
   selector: 'app-login',
@@ -79,9 +80,24 @@ export class LoginComponent implements OnInit, OnDestroy {
     const loginSubscr = this.authService
       .login(this.f.email.value, this.f.password.value)
       .pipe(first())
-      .subscribe((user: UserModel | undefined) => {
+      .subscribe((user: LoginResponseModel | any) => {
         if (user) {
-          this.router.navigate([this.returnUrl]);
+          switch (user.data.role) {      
+            case "ADMIN":                         
+            this.router.navigate(["adminDashboard"]);
+            break;
+            case "BARBER":                         
+            this.router.navigate(["barberDashboard"]);
+            break;
+            case "CLIENT":                         
+            this.router.navigate([this.returnUrl]);
+            break;
+            default:                        
+              this.router.navigate([this.returnUrl]);
+            } 
+          console.log(user);
+          
+          
         } else {
           this.hasError = true;
         }

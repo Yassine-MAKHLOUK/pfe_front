@@ -79,9 +79,7 @@ export class AuthService implements OnDestroy {
     return this.authHttpService.getUserByToken(auth.data.token).pipe(
       map((user: UserType) => {
         if (user) {
-          this.currentUserSubject.next(user);
-          console.log(user);
-          
+          this.currentUserSubject.next(user);          
         } else {
           this.logout();
         }

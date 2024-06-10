@@ -1,9 +1,20 @@
 import { Routes } from '@angular/router';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.component';
+import { DashboardBarberComponent } from './dashboard-barber/dashboard-barber.component';
 
 const Routing: Routes = [
   {
     path: 'dashboard',
     loadChildren: () => import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
+  },
+  {
+    path: 'adminDashboard',
+    component: DashboardAdminComponent,
+  },
+  {
+    path: 'barberDashboard',
+    component: DashboardBarberComponent,
   },
   {
     path: 'builder',
