@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.component';
 import { DashboardBarberComponent } from './dashboard-barber/dashboard-barber.component';
+import { HomeComponent } from './home/home.component';
 
 const Routing: Routes = [
   {
@@ -59,8 +60,7 @@ const Routing: Routes = [
   },
   {
     path: '',
-    redirectTo: '/dashboard',
-    pathMatch: 'full',
+    component:HomeComponent,
   },
   {
     path: '**',
